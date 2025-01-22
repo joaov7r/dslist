@@ -16,27 +16,31 @@ public class Game {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
+	private String title;
 	
 	@Column(name = "game_year")
 	private Integer year;
 	private String genre;
-	private String platofrms;
+	private String platforms;
 	private Double score;
 	private String imgUrl;
+	
+	@Column(columnDefinition = "TEXT") //this annotation makes the JPA generate this line as a text, not a VARCHAR(255), because 255 is too short for the descriptions of the games
 	private String shortDescription;
+	
+	@Column(columnDefinition = "TEXT")
 	private String longDescription;
 	
 	public Game() {
 	}
 
-	public Game(Long id, String name, int year, String genre, String platofrms, Double score, String imgUrl,
+	public Game(Long id, String title, Integer year, String genre, String platforms, Double score, String imgUrl,
 			String shortDescription, String longDescription) {
 		this.id = id;
-		this.name = name;
+		this.title = title;
 		this.year = year;
 		this.genre = genre;
-		this.platofrms = platofrms;
+		this.platforms = platforms;
 		this.score = score;
 		this.imgUrl = imgUrl;
 		this.shortDescription = shortDescription;
@@ -52,11 +56,11 @@ public class Game {
 	}
 
 	public String getName() {
-		return name;
+		return title;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.title = name;
 	}
 
 	public int getYear() {
@@ -76,11 +80,11 @@ public class Game {
 	}
 
 	public String getPlatofrms() {
-		return platofrms;
+		return platforms;
 	}
 
 	public void setPlatofrms(String platofrms) {
-		this.platofrms = platofrms;
+		this.platforms = platofrms;
 	}
 
 	public Double getScore() {
